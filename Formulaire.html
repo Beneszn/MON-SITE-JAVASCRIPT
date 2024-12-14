@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulaire</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+.invalid {
+border: 2px solid red;
+background-color: #ffe6e6;
+}
+
+.valid {
+border: 2px solid green;
+background-color: #e6ffe6;
+}
+
+.password-rules {
+font-size: 0.9em;
+color: red;
+margin-top: 5px;
+display: none;
+}
+
+.password-rules.valid {
+color: green;
+display: block;
+}
+
+.toggle-password {
+cursor: pointer;
+background-color: transparent;
+border: none;
+color: #007BFF;
+text-decoration: underline;
+position: absolute;
+right: 10px;
+top: 50%;
+transform: translateY(-50%);
+}
+
+.password-container {
+position: relative;
+width: 100%;
+}
+
+.password-invalid-message {
+color: red;
+font-size: 0.8em;
+position: absolute;
+right: 10px;
+top: 100%;
+transform: translateY(5px);
+}
+
+</style>
+</head>
+<body>
+<header>   
+<div class="menu-icon">☰</div>
+<div class="logo">
+<a href="Index.html">
+<img src="JollyRogerOP.png" alt="Mugiwaras">
+<h1>Shin Sekai</h1>
+</a>
+</div>
+<nav>
+<ul>
+<li><a href="Index.html">Accueil</a></li>
+<li><a href="Index 2.html">Cartes</a></li>
+<li><a href="#cartes">Le Commencement</a></li>
+<li><a href="#goodies">Goodies</a></li>
+<li><a href="#shonen-jump">Shonen Jump</a></li>
+<li>
+<button onclick="darkmode()" class="darkmode-btn">
+<img src="JollyRogerOP copy.png" alt="darkmode">
+</button>
+</li>
+</ul>
+</nav>
+</header>
+
+<main>
+<section class="contact-form">
+<h2>Contactez-nous</h2>
+<form>
+<label for="name">Nom d'utilisateur :</label>
+<input type="text" id="name" placeholder="Entrez votre nom" required>
+<label for="email">Email :</label>
+<input type="email" id="email" placeholder="Entrez votre email" required>
+<label for="password">Mot de passe :</label>
+<div class="password-container">
+<input type="password" id="password" placeholder="Entrez votre mot de passe" required>
+<button type="button" id="togglePassword" class="toggle-password">👁️</button>
+<div id="password-invalid-message" class="password-invalid-message"></div>
+</div>
+
+<div id="password-rules" class="password-rules">
+Le mot de passe doit contenir :
+<ul>
+<li>Au moins 8 caractères</li>
+<li>Une lettre majuscule</li>
+<li>Un chiffre</li>
+<li>Un caractère spécial (!@#$%^&*)</li>
+</ul>
+</div>
+
+<label for="message">Votre avis nous intéresse :</label>
+<textarea id="message" rows="4" placeholder="Partagez votre avis"></textarea>
+
+<div class="radio-group">
+<label>Monster Trio :</label>
+<label><input type="radio" name="trio" value="Sanji"> Sanji</label>
+<label><input type="radio" name="trio" value="Luffy"> Luffy</label>
+<label><input type="radio" name="trio" value="Zoro"> Zoro</label>
+</div>
+
+<button type="submit">Envoyer</button>
+</form>
+</section>
+</main>
+
+<footer>
+<p>&copy; 2023 Shin Sekai - Tous droits réservés.</p>
+<div class="socials">
+<a href="#">Facebook</a>
+<a href="#">Twitter</a>
+<a href="#">Instagram</a>
+</div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

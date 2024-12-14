@@ -1,0 +1,113 @@
+/* Réduction de la taille de l'image du dark mode */
+nav ul li button img.darkmode-icon {
+    width: 30px; /* Taille réduite */
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+nav ul li button:hover img.darkmode-icon {
+    transform: scale(1.1);
+}
+
+/* Header cohérent */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.logo img {
+    width: 50px; /* Taille du logo */
+    margin-right: 10px;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+/* Section formulaire */
+.contacte {
+    background-color: #333;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    margin: 20px auto; /* Centrage */
+}
+
+.contacte h2 {
+    color: #ff4500;
+    margin-bottom: 20px;
+}
+
+.contacte form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contacte label {
+    font-size: 1rem;
+    color: #ffd01f;
+    text-align: left;
+}
+
+.contacte input,
+.contacte textarea,
+.contacte button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #444;
+    color: #f0f0f0;
+}
+
+.contacte input:focus,
+.contacte textarea:focus {
+    outline: 2px solid #ff4500;
+}
+
+.contacte button {
+    background-color: #ff4500;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contacte button:hover {
+    background-color: #c93c3c;
+}
+
+.radio-group {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffd01f;
+    font-size: 1rem;
+}
+
+.radio-group input[type="radio"] {
+    accent-color: #ffd01f;
+}
