@@ -1,92 +1,85 @@
-function darkmode() {
-const element = document.body;
-element.classList.toggle("darkmode");
-  
-if (element.classList.contains("darkmode")) {
-localStorage.setItem("darkmode", "enabled");
-} else {
-localStorage.removeItem("darkmode");
-}
-}
+class Personnage {
+    constructor(nom) {
+        this.nom = nom;
+        this.pointsDeVie = Math.floor(Math.random() * 101) + 50; 
+        this.attaque = Math.floor(Math.random() * 11) + 10; 
+        this.precision = Math.random() * 0.5 + 0.5; 
+    }
 
-document.addEventListener("DOMContentLoaded", () => {
-const element = document.body;
-if (localStorage.getItem("darkmode") === "enabled") {
-element.classList.add("darkmode");
-}
-});
+    attaquer(adversaire) {
+        if (this.testerPrecision()) {
+            const degats = Math.floor(Math.random() * this.attaque) + 1; 
+            adversaire.pointsDeVie -= degats;
+            console.log(
+                this.nom + " attaque " + adversaire.nom + " et inflige " + degats + " dégâts !"
+            );
+        } else {
+            console.log(this.nom + " attaque " + adversaire.nom + " qui esquive sans effort !");
+        }
+    }
 
-const links = document.querySelectorAll("nav li a"); 
-const icon = document.querySelector(".menu-icon");   
-const nav = document.querySelector("nav");           
-
-if (icon && nav) {
-icon.addEventListener("click", () => {
-nav.classList.toggle("active");
-});
+   
+    testerPrecision() {
+        return Math.random() < this.precision;
+    }
 }
 
-if (links.length > 0) {
-links.forEach((link) => {
-link.addEventListener("click", () => {
-if (nav.classList.contains("active")) {
-nav.classList.remove("active");
+
+const Cesar = new Personnage("Cesar");
+const Lion = new Personnage("Lion");
+
+
+console.log("Statistiques des combattants :");
+console.log(
+    Cesar.nom +
+        " - Points de vie : " +
+        Cesar.pointsDeVie +
+        ", Attaque : " +
+        Cesar.attaque +
+        ", Précision : " +
+        Cesar.precision.toFixed(2)
+);
+console.log(
+    Lion.nom +
+        " - Points de vie : " +
+        Lion.pointsDeVie +
+        ", Rage : " +
+        Lion.attaque +
+        ", Précision : " +
+        Lion.precision.toFixed(2)
+);
+
+
+console.log("\nDébut du combat !");
+while (Cesar.pointsDeVie > 0 && Lion.pointsDeVie > 0) {
+   
+    Cesar.attaquer(Lion);
+
+   
+    if (Lion.pointsDeVie <= 0) {
+        console.log(Lion.nom + " À succombé ! " + Cesar.nom + " À Vaincu !");
+        break;
+    }
+
+    Lion.attaquer(Cesar);
+
+
+    if (Cesar.pointsDeVie <= 0) {
+        console.log(Cesar.nom + " À succombé ! " + Lion.nom + " À Vaincu ! !");
+        break;
+    }
+
+    console.log(
+        "Points de vie restants : " +
+        Cesar.nom +
+        " (" +
+        Cesar.pointsDeVie +
+        ") - " +
+        Lion.nom +
+        " (" +
+        Lion.pointsDeVie +
+        ")"
+    );
 }
-});
-});
-}
-const passwordInput = document.getElementById("password");
-const passwordRules = document.getElementById("password-rules");
-const togglePasswordBtn = document.getElementById("togglePassword");
-const passwordInvalidMessage = document.getElementById("password-invalid-message");
 
-function validatePassword(password) {
-const lengthCheck = password.length >= 8;
-const uppercaseCheck = /[A-Z]/.test(password);
-const numberCheck = /[0-9]/.test(password);
-const specialCharCheck = /[!@#$%^&*]/.test(password);
-
-return lengthCheck && uppercaseCheck && numberCheck && specialCharCheck;
-}
-
-togglePasswordBtn.addEventListener("click", () => {
-const type = passwordInput.type === "password" ? "text" : "password";
-passwordInput.type = type;
-togglePasswordBtn.textContent = type === "password" ? "👁️" : "🙈";
-});
-
-passwordInput.addEventListener("input", () => {
-const password = passwordInput.value;
-
-if (password === "") {
-passwordRules.style.display = "none";
-passwordInvalidMessage.textContent = "";
-} else {
-passwordRules.style.display = "block";
-}
-
-if (password.length >= 8 && !validatePassword(password)) {
-passwordInput.classList.remove("valid");
-passwordInput.classList.add("invalid");
-} else if (validatePassword(password)) {
-passwordInput.classList.remove("invalid");
-passwordInput.classList.add("valid");
-passwordInvalidMessage.textContent = ""; // Réinitialiser le message
-passwordRules.classList.add("valid");
-passwordRules.innerHTML = "Mot de passe valide ✅";
-} else {
-passwordInput.classList.remove("valid");
-passwordInput.classList.add("invalid");
-passwordInvalidMessage.textContent = "";
-passwordRules.classList.remove("valid");
-passwordRules.innerHTML = `
-Le mot de passe doit contenir :
-<ul>
-<li>Au moins 8 caractères</li>
-<li>Une lettre majuscule</li>
-<li>Un chiffre</li>
-<li>Un caractère spécial (!@#$%^&*)</li>
-</ul>
-`;
-}
-});
+console.log("Fin du combat !");
